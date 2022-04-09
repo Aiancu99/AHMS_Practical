@@ -1,5 +1,18 @@
 # AHMS_Practical
 Repository for the Data Analysis of the AHMS_Practical
+
+_________ Update 09/04/2022 __________
+
+Several additions were made for the existing program, namely:
+- Included a function which can plot the Pilot frf and Open loop frf, for all the conditions (for comparison).
+- Included a function which can automatically compute the crossover frequency and phase margin for all the conditions. 
+
+
+
+
+
+
+
 _________ Update 05/04/2022 __________
 
 The existing program was refactored to have a neater look, and to make it easier to work with.
@@ -83,7 +96,7 @@ Finally, the plotting is done and the outputs are defined (open loop magnitude a
 
 Lastly, the pilot parameters are presented in the function dispPilotParams
 
-TODO in the near future, automatic calculations of the phase margin and crossover frequency
+
 
 
 
