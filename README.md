@@ -1,6 +1,14 @@
 # AHMS_Practical
 Repository for the Data Analysis of the AHMS_Practical
 
+
+_________ Update 23/04/2022
+
+Massive changes in the program. Apparently not all the data in the previous programs was needed. In the V4 there are all the graphs (9) for the dependent variables. The normality test was performed and onlt TL is not normally distributed, therefore different statistical test needs to be performed.
+
+You can uncomment the display... functions to see the graphs, the crossover frequency and phase margin take longer (5 min).
+You can also uncomment the graphing part if desired..
+
 _________ Update 09/04/2022 __________
 
 Several additions were made for the existing program, namely:
