@@ -2,13 +2,18 @@ clear all;
 
 
 MyMat = load('ae4316p_2022_data_group3.mat')
-
+% You can uncomment the functions one at the time. The matrix that needs to
+% be entered in SPSS will be a 6x3 matrix and will appear in the Command
+% window if you scroll up a bit after the function has run.
 
 % Errorbar plot for dependent variable #1, Score Parameter
 % DisplaySc(MyMat,2)
 
 % Errorbar plot for dependent variable #2, Control signal variance
-% DisplaySigU(MyMat,2)
+% DisplaySigU(MyMat,1)
+
+%_________________ from this part, please modify the objesctivefcn program
+%the for loop to run from 4 to iterator, not iterator -1.
 
 % Errorbar plot for dependent variable #3, Pilot gain
 % DisplayKp(MyMat,2)
@@ -33,18 +38,16 @@ MyMat = load('ae4316p_2022_data_group3.mat')
 % Errorbar plot for dependent variable #9, Phase margin
 % DisplayPm (MyMat,2)
 
-% DisplayPilotParams(MyMat,2)
+
 
 
 %---------------- Plotting If needed ------
 
-
-
-% DisplayPilotParams(MyMat,2)
-
-
-% [a,b] = AverageData_new(MyMat,'CM','data_subj6')
-
+% w = 0.1:0.01:12
+% 
+% 
+% [a,b] = AverageData_new(MyMat,'CM','data_subj1')
+% 
 % mag = a
 % phase = b
 % 
@@ -56,18 +59,18 @@ MyMat = load('ae4316p_2022_data_group3.mat')
 % [crossover, phasemargin] = CrosPh_simple(Hp3(w<6),Hp4(w<6),w)
 % 
 % b(end) = b(end) - 360
+
+hold on
+plot(w,Hp1)
+scatter(MyMat.data_subj1.C.w,a)
+set(gca,'xscale','log')
+set(gca,'yscale','log')
+xlabel('\omega [{rad/s}]')
+ylabel('|H_{p}(j\omega)| [-]')
+grid on
+hold off
+
 % 
-% hold on
-% plot(w,Hp1)
-% scatter(MyMat.data_subj1.C.w,a)
-% set(gca,'xscale','log')
-% set(gca,'yscale','log')
-% xlabel('\omega [{rad/s}]')
-% ylabel('|H_{p}(j\omega)| [-]')
-% grid on
-% hold off
-
-
 % hold on
 % scatter(MyMat.data_subj1.C.w,b)
 % plot(w,Hp2)
@@ -76,20 +79,6 @@ MyMat = load('ae4316p_2022_data_group3.mat')
 % ylabel('|H_{p}(j\omega)| [-]')
 % hold off
 
-
-
-
-
-% DisplaySc(data,1)
-
-% optimize(data,choice)
-% plot_freq_domain(w,data,choice,choice2)
-
-%dispCombined(w,data,choice2)
-
-%dispPilotParams(data,choice)
-
-% dispCrosPh(w,data,choice)
 
 
 
@@ -125,9 +114,6 @@ phase_margin = 180 + bb
 
 
 end
-
-
-
 
 
 
@@ -197,13 +183,16 @@ end
 MatSigSc = [Cs,CPs,CMs]
 
 if (choice == 1)
-    plot(MatSigSc','b-x')
+    hold on
+    means = mean(MatSigSc)
+    plot(MatSigSc','b-.x')
+    
     nms = 1:1:3
     set(gca,'xTick',nms)
     set(gca,'xTickLabels',Data.str_conds)
     xlabel('Condition')
     ylabel('S_{c} [-]')
-
+    hold off
 else
 
 
@@ -249,12 +238,17 @@ MatSigU = [Cs,CPs,CMs]
 display(MatSigU)
 
 if (choice == 1)
-    plot(MatSigU','b-x')
+    hold on
+    means = mean(MatSigU)
+    plot(MatSigU','k-.s','MarkerFaceColor','black')
+    plot(means,'r-s','MarkerFaceColor','red')
     nms = 1:1:3
     set(gca,'xTick',nms)
     set(gca,'xTickLabels',Data.str_conds)
     xlabel('Condition')
     ylabel('\sigma_{u}^2 [deg^2]')
+    grid on
+    hold off
 
 else
 
